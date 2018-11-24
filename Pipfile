@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+nose = "*"
+parameterized = "*"
+flake8 = "*"
+
+[packages]
+flask = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+start = "python src/run.py"
+lint = "flake8 --max-line-length=120 --ignore=E402 src"
+test_small = "nosetests -v --nologcapture --attr size=Small src/tests"
+test_medium = "nosetests -v --nologcapture --attr size=Medium src/tests"
