@@ -2,8 +2,14 @@ pipeline {
   agent any
   stages {
     stage('test') {
+      agent {
+        docker {
+          image 'python:3.7.0-alpine3.7'
+        }
+
+      }
       steps {
-        sh 'echo unitetest'
+        sh 'python --version'
       }
     }
     stage('deploy') {
