@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    file_name = "output.txt"
+  }
   stages {
     stage('parallel build') {
       steps {
@@ -11,12 +14,7 @@ pipeline {
             sh 'echo 02_use_sh_step'
           },
           "03_write_file": {
-            build(
-              job: '03_write_file',
-              parameters: [
-                text(name: 'output.txt', value: 'hoge')
-              ]
-            )
+            writeFile(file: file_name, text: "output_text")
           }
         )
       }
