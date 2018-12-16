@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  parameters {
+    string(name: 'OUTPUT_TEXT', defaultValue: 'output.txt')
+  }
   stages {
     stage('write file') {
       steps {
