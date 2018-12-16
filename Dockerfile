@@ -11,8 +11,8 @@ RUN pip install --no-cache-dir pipenv
 RUN pipenv install --clear
 
 # テスト時のみ、開発環境用のライブラリをインストール
-ARG TEST
-RUN if [ -n "$TEST" ]; then \
+ARG TESTING
+RUN if [ -n "$TESTING" ]; then \
     pipenv install --dev --clear; \
 fi
 
