@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir pipenv
 RUN pipenv install --clear
 
 # ソースをコピー
+COPY ./setup.cfg ./
 COPY src/ ./src
 
 # テスト時のみ、開発環境用のライブラリをインストール
