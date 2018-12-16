@@ -1,19 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('lint') {
+    stage('write file') {
       steps {
-        sh 'echo lint'
-      }
-    }
-    stage('test small') {
-      steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
+        writeFile(file: "output.txt", text: "${OUTPUT_TEXT}")
       }
     }
   }
