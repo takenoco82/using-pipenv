@@ -19,6 +19,11 @@ pipeline {
         )
       }
     }
+    stage('archive artifacts') {
+      steps {
+        archiveArtifacts file_name
+      }
+    }
   }
   post {
     always {
