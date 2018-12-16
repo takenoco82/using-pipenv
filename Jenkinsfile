@@ -7,14 +7,8 @@ pipeline {
       }
     }
     stage('test small') {
-      agent {
-        docker {
-          image 'python:3.7.0-alpine3.7'
-        }
-
-      }
       steps {
-        sh 'python --version'
+        sh 'echo test_small'
       }
     }
     stage('deploy') {
