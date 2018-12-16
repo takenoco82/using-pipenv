@@ -6,7 +6,7 @@ from parameterized import param, parameterized
 from server import app, fizzbuzz
 
 
-@attr(size='Small')
+@attr(size='small')
 class TestFizzBuzz(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -117,8 +117,8 @@ class TestFizzBuzz(unittest.TestCase):
             self.assertEqual(message, expected["message"])
 
 
-@attr(size='Medium')
-class TestFizzBuzz_Medium(unittest.TestCase):
+@attr(size='medium')
+class TestFizzBuzz_medium(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         pass

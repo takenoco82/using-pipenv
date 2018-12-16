@@ -4,7 +4,7 @@ import unittest
 from nose.plugins.attrib import attr
 
 
-@attr(size='Small')
+@attr(size='small')
 class TestFoo(unittest.TestCase):
     _multiprocess_can_split_ = True
 
