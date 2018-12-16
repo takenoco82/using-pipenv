@@ -1,19 +1,17 @@
 pipeline {
   agent any
+  environment {
+    file_name = "output.txt"
+  }
   stages {
-    stage('lint') {
+    stage('write file') {
       steps {
-        sh 'echo lint'
+        writeFile(file: file_name, text: "output_text")
       }
     }
-    stage('test small') {
+    stage('archive artifacts') {
       steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
+        archiveArtifacts file_name
       }
     }
   }
