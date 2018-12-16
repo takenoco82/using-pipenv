@@ -5,7 +5,7 @@ pipeline {
       steps {
         parallel(
           "01_hello_world": {
-            build '01_hello_world'
+            echo '01_hello_world'
           },
           "02_use_sh_step": {
             build '02_use_sh_step'
