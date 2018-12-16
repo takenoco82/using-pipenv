@@ -1,19 +1,24 @@
 pipeline {
-  agent any
+  agent none
   stages {
-    stage('lint') {
+    stage('Python version') {
+      agent {
+        docker {
+          image 'python:3.7.0-alpine3.7'
+        }
+      }
       steps {
-        sh 'echo lint'
+        sh 'python --version'
       }
     }
-    stage('test small') {
-      steps {
-        sh 'echo test_small'
+    stage('Node version') {
+      agent {
+        docker {
+          image 'node:8-alpine'
+        }
       }
-    }
-    stage('deploy') {
       steps {
-        sh 'echo deploy'
+        sh 'node --version'
       }
     }
   }
