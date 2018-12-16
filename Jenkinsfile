@@ -1,21 +1,23 @@
 pipeline {
   agent any
   stages {
-    stage('lint') {
+    stage('parallel build') {
       steps {
-        sh 'echo lint'
+        "01_hello_world": {
+          build '01_hello_world'
+        },
+        "02_use_sh_step": {
+          build '02_use_sh_step'
+        },
+        "03_write_file": {
+          build(
+            job: '03_write_file',
+            parameters: [
+              text(name: 'output.txt', value: 'hoge')
+            ]
+          )
+        },
       }
-    }
-    stage('test small') {
-      steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
-      }
-    }
   }
   post {
     always {
