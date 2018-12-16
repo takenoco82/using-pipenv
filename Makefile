@@ -1,6 +1,6 @@
 SERVICE=sandbox
 
-start:
+start: stop
 	@echo 'start ...'
 	docker-compose up -d --build
 
@@ -9,8 +9,7 @@ stop:
 	docker-compose stop
 	docker-compose rm -f
 
-test:
-	docker-compose build --build-arg TEST=true ${SERVICE}
+test: start
 	@echo 'lint ...'
 	docker-compose run --rm ${SERVICE} pipenv run lint
 	@echo 'test ...'

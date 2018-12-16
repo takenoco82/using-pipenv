@@ -2,7 +2,10 @@ version: '3'
 
 services:
   sandbox:
-    build: .
+    build:
+      context: .
+      args:
+        - TESTING=true
     restart: always
     ports:
       - "8080:8080"
