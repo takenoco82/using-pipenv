@@ -7,6 +7,7 @@ verify_ssl = true
 nose = "*"
 parameterized = "*"
 flake8 = "*"
+coverage = "*"
 
 [packages]
 flask = "*"
