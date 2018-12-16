@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('lint') {
+      steps {
+        sh 'echo lint'
+      }
+    }
     stage('test small') {
       agent {
         docker {
