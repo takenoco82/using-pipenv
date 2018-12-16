@@ -24,8 +24,10 @@ pipeline {
   }
   post {
     always {
-      // Always cleanup after the build.
-      sh 'echo finished!'
+      node('master') {
+        // Always cleanup after the build.
+        sh 'echo finished!'
+      }
     }
   }
 }
