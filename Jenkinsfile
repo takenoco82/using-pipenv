@@ -8,7 +8,7 @@ pipeline {
             echo '01_hello_world'
           },
           "02_use_sh_step": {
-            build '02_use_sh_step'
+            sh 'echo 02_use_sh_step'
           },
           "03_write_file": {
             build(
