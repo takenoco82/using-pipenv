@@ -5,7 +5,7 @@ pipeline {
       steps {
         script {
           sh 'curl -o date.json "http://date.jsontest.com"'
-          json = readJson file: 'date.json'
+          json = readJSON file: 'date.json'
           echo "Today is ${json.date}"
         }
       }
