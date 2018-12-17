@@ -3,17 +3,12 @@ pipeline {
   stages {
     stage('lint') {
       steps {
-        sh 'echo lint'
+        sh 'docker-compose run --rm sandbox pipenv run lint'
       }
     }
     stage('test small') {
       steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
+        sh 'docker-compose run --rm ${SERVICE} pipenv run test_small'
       }
     }
   }
