@@ -5,7 +5,7 @@ pipeline {
       steps {
         echo 'docker-compose up mysql'
         script {
-          step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartService', scale: 1, service: 'mysql'], useCustomDockerComposeFile: true])
+          step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'ExecuteCommandInsideContainer', command: 'mysql --version', index: 1, privilegedMode: false, service: 'mysql', workDir: ''], useCustomDockerComposeFile: true])
         }
       }
     }
