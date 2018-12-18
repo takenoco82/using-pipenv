@@ -3,12 +3,15 @@ pipeline {
   stages {
     stage('lint') {
       steps {
-        sh 'docker-compose run --rm sandbox pipenv run lint'
+        echo 'docker-compose up'
+        script {
+          step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: true])
+        }
       }
     }
     stage('test small') {
       steps {
-        sh 'docker-compose run --rm ${SERVICE} pipenv run test_small'
+        echo 'test small'
       }
     }
   }
