@@ -1,26 +1,26 @@
 pipeline {
-  agent any
+  agent none
   stages {
-    stage('lint') {
-      steps {
-        sh 'echo lint'
+    stage('sandbox lint') {
+      agent {
+        // docker build -f Dockerfile --build-arg TESTING=true
+        dockerfile {
+          filename 'Dockerfile'
+          additionalBuildArgs 'TESTING=true'
+        }
       }
-    }
-    stage('test small') {
       steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
+        echo 'pipenv run lint'
+        sh 'pipenv run lint'
       }
     }
   }
   post {
     always {
-      // Always cleanup after the build.
-      sh 'echo finished!'
+      node('master') {
+        // Always cleanup after the build.
+        sh 'echo finished!'
+      }
     }
   }
 }
