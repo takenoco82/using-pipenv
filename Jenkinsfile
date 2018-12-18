@@ -6,7 +6,7 @@ pipeline {
         // docker build -f Dockerfile --build-arg TESTING=true
         dockerfile {
           filename 'Dockerfile'
-          additionalBuildArgs '--build-arg=TESTING=true'
+          additionalBuildArgs '--build-arg TESTING=true'
         }
       }
       steps {
