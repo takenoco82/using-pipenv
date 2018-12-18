@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage('lint') {
       steps {
-        echo 'docker-compose up'
+        echo 'docker-compose up mysql'
         script {
-          step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: true])
+          step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartService', scale: 1, service: 'mysql'], useCustomDockerComposeFile: true])
         }
       }
     }
