@@ -4,7 +4,11 @@ pipeline {
     stage('build') {
       steps {
         script {
-          docker.build("sandbox:${env.BUILD_ID}")
+          docker.build("sandbox:${env.BUILD_ID}").withRun() { c ->
+            sh 'pwd'
+            sh 'ls'
+            sh 'pipenv run pip freeze'
+          }
         }
       }
     }
