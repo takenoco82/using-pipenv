@@ -22,6 +22,7 @@ pipeline {
       }
       steps {
         sh 'ls'
+        sh 'whoami'
         sh 'pipenv run pip freeze'
       }
     }
