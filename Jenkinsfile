@@ -4,7 +4,7 @@ pipeline {
     stage('build') {
       steps {
         script {
-          docker.build("sandbox:${env.BUILD_ID}").withRun() { c ->
+          docker.build("sandbox:${env.BUILD_ID}").inside {
             sh 'pwd'
             sh 'ls'
             sh 'pipenv run pip freeze'
