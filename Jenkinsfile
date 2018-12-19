@@ -4,7 +4,7 @@ pipeline {
     stage('build') {
       steps {
         script {
-          docker.build("sandbox:${env.BUILD_NUMBER}")
+          docker.build("sandbox:${env.BUILD_ID}")
         }
       }
     }
