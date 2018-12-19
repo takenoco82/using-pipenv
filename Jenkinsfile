@@ -4,12 +4,9 @@ pipeline {
     stage('build') {
       steps {
         script {
-          docker.build("sandbox:${env.BUILD_ID}").inside {
-            sh 'pwd'
-            sh 'ls'
-            sh 'pipenv run pip freeze'
-          }
+          docker.build("sandbox:${env.BUILD_ID}")
         }
+        sh "docker run --rm sandbox:${env.BUILD_ID} pipenv run pip freeze"
       }
     }
   }
