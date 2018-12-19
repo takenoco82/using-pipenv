@@ -20,4 +20,5 @@ RUN if [ -n "$TESTING" ]; then \
     pipenv install --dev --clear; \
 fi
 
+RUN pipenv run pip freeze
 CMD [ "pipenv", "run", "start" ]

@@ -10,8 +10,7 @@ pipeline {
         }
       }
       steps {
-        echo 'pipenv run lint'
-        sh 'pipenv run lint'
+        sh 'pipenv run pip freeze'
       }
     }
   }
