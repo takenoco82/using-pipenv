@@ -8,6 +8,7 @@ pipeline {
         }
       }
       steps {
+        sh 'ls'
         sh 'node --version'
       }
     }
