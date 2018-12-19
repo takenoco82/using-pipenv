@@ -21,7 +21,9 @@ pipeline {
         }
       }
       steps {
+        sh 'pwd'
         sh 'ls'
+        sh 'id'
         sh 'whoami'
         sh 'pipenv run pip freeze'
       }
