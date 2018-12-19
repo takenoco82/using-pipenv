@@ -20,6 +20,7 @@ pipeline {
         }
       }
       steps {
+        sh 'ls'
         sh 'pipenv run pip freeze'
       }
     }
