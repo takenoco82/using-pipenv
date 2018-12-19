@@ -1,6 +1,16 @@
 pipeline {
   agent none
   stages {
+    stage('Node version') {
+      agent {
+        docker {
+          image 'node:8-alpine'
+        }
+      }
+      steps {
+        sh 'node --version'
+      }
+    }
     stage('sandbox lint') {
       agent {
         // docker build -f Dockerfile --build-arg TESTING=true
