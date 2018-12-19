@@ -1,19 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage('lint') {
+    stage('build') {
       steps {
-        sh 'echo lint'
-      }
-    }
-    stage('test small') {
-      steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
+        scripted {
+          docker.build('sandbox:${env.BUILD_NUMBER}')
+        }
       }
     }
   }
