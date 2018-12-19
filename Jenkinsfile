@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        scripted {
+        script {
           docker.build('sandbox:${env.BUILD_NUMBER}')
         }
       }
