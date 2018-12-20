@@ -17,8 +17,7 @@ pipeline {
         // docker build -f Dockerfile --build-arg TESTING=true
         dockerfile {
           filename 'Dockerfile'
-          additionalBuildArgs '--build-arg TESTING=true'
-          args '--no-cache'
+          additionalBuildArgs '--no-cache --build-arg TESTING=true'
         }
       }
       steps {
