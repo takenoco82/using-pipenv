@@ -1,18 +1,6 @@
 pipeline {
   agent none
   stages {
-    stage('system property') {
-      agent {
-        node {
-          label 'master'
-        }
-      }
-      steps {
-        script {
-          System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL", "3800");
-        }
-      }
-    }
     stage('Node version') {
       agent {
         docker {
