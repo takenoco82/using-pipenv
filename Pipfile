@@ -13,7 +13,7 @@ coverage = "*"
 flask = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6.4"
 
 [scripts]
 start = "python src/run.py"
