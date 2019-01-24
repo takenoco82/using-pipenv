@@ -8,7 +8,7 @@ ENV PYTHONPATH=/usr/app:$PYTHONPATH
 # ライブラリをインストール
 COPY ./Pipfile ./Pipfile.lock ./
 RUN pip install --no-cache-dir pipenv
-RUN pipenv install
+RUN pipenv install --dev --system
 
 # ソースをコピー
 COPY ./setup.cfg ./
@@ -21,5 +21,5 @@ ARG TESTING
 # fi
 
 RUN whoami
-RUN pipenv run pip freeze
-CMD [ "pipenv", "run", "start" ]
+# RUN pipenv run pip freeze
+CMD [ "python", "src/run.py" ]
