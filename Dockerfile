@@ -7,7 +7,7 @@ ENV PYTHONPATH=/usr/app:$PYTHONPATH
 
 # ライブラリをインストール
 COPY ./Pipfile ./Pipfile.lock ./
-RUN pip install --no-cache-dir pipenv
+RUN pip install --upgrade pip && pip install --no-cache-dir pipenv
 RUN pipenv install --dev --system
 
 # ソースをコピー
