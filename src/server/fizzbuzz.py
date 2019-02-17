@@ -1,4 +1,6 @@
 from flask import Blueprint, jsonify
+from server.exceptions import HttpBadRequestError
+
 
 app = Blueprint('fizzbuzz', __name__)
 
@@ -8,8 +10,7 @@ def fizzbuzz(n: int):
     try:
         response = {'fizzbuzz': list(fizzbuzz_gen(n))}
     except (TypeError, ValueError) as e:
-        response = {'error': e.args[0]}
-        return jsonify(response), 400
+        raise HttpBadRequestError(e.args[0])
 
     return jsonify(response), 200
 
