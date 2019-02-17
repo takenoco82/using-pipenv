@@ -1,19 +1,12 @@
 pipeline {
   agent any
+  parameters {
+    string(name: 'OUTPUT_TEXT', defaultValue: 'output.txt')
+  }
   stages {
-    stage('lint') {
+    stage('write file') {
       steps {
-        sh 'echo lint'
-      }
-    }
-    stage('test small') {
-      steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
+        writeFile(file: "output.txt", text: "${params.OUTPUT_TEXT}")
       }
     }
   }
