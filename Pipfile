@@ -18,5 +18,5 @@ python_version = "3.7"
 [scripts]
 start = "python src/run.py"
 lint = "flake8 --max-line-length=120 --ignore=E402 src"
-test_small = "nosetests --nologcapture --attr size=Small src/tests"
-test_medium = "nosetests --nologcapture --attr size=Medium src/tests"
+test_small = "nosetests --nologcapture --attr size=small --xunit-file=nosetests_small.xml src/tests"
+test_medium = "nosetests --nologcapture --attr size=medium --xunit-file=nosetests_medium.xml src/tests"
