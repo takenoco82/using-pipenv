@@ -1,19 +1,27 @@
 pipeline {
   agent any
+  environment {
+    file_name = "output.txt"
+  }
   stages {
-    stage('lint') {
+    stage('parallel build') {
       steps {
-        sh 'echo lint'
+        parallel(
+          "01_hello_world": {
+            echo '01_hello_world'
+          },
+          "02_use_sh_step": {
+            sh 'echo 02_use_sh_step'
+          },
+          "03_write_file": {
+            writeFile(file: file_name, text: "output_text")
+          }
+        )
       }
     }
-    stage('test small') {
+    stage('archive artifacts') {
       steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
+        archiveArtifacts file_name
       }
     }
   }
