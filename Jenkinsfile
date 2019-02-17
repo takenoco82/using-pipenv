@@ -1,26 +1,40 @@
 pipeline {
-  agent any
+  agent none
   stages {
-    stage('lint') {
+    stage('Node version') {
+      agent {
+        docker {
+          image 'node:8-alpine'
+        }
+      }
       steps {
-        sh 'echo lint'
+        sh 'ls'
+        sh 'node --version'
       }
     }
-    stage('test small') {
-      steps {
-        sh 'echo test_small'
+    stage('sandbox lint') {
+      agent {
+        // docker build -f Dockerfile --build-arg TESTING=true
+        dockerfile {
+          filename 'Dockerfile'
+          additionalBuildArgs '--no-cache --build-arg TESTING=true'
+        }
       }
-    }
-    stage('deploy') {
       steps {
-        sh 'echo deploy'
+        sh 'pwd'
+        sh 'ls'
+        sh 'id'
+        sh 'whoami'
+        sh 'pipenv run pip freeze'
       }
     }
   }
   post {
     always {
-      // Always cleanup after the build.
-      sh 'echo finished!'
+      node('master') {
+        // Always cleanup after the build.
+        sh 'echo finished!'
+      }
     }
   }
 }
