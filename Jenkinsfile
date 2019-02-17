@@ -1,19 +1,13 @@
 pipeline {
   agent any
   stages {
-    stage('lint') {
+    stage('read json') {
       steps {
-        sh 'echo lint'
-      }
-    }
-    stage('test small') {
-      steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
+        script {
+          sh 'curl -o date.json "http://date.jsontest.com"'
+          json = readJSON file: 'date.json'
+          echo "Today is ${json.date}"
+        }
       }
     }
   }
