@@ -3,17 +3,15 @@ pipeline {
   stages {
     stage('lint') {
       steps {
-        sh 'echo lint'
+        echo 'docker-compose up mysql'
+        script {
+          step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'ExecuteCommandInsideContainer', command: 'mysql --version', index: 1, privilegedMode: false, service: 'mysql', workDir: ''], useCustomDockerComposeFile: true])
+        }
       }
     }
     stage('test small') {
       steps {
-        sh 'echo test_small'
-      }
-    }
-    stage('deploy') {
-      steps {
-        sh 'echo deploy'
+        echo 'test small'
       }
     }
   }
